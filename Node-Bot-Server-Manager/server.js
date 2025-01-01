@@ -281,11 +281,4 @@ const monitorBot = (botName) => {
             restartBot(botName);
         }
     });
-
-    // Optionally, monitor the bot’s memory usage or other conditions here
-    // setInterval(() => {
-    //     if (someConditionToRestartBot) {
-    //         restartBot(botName);
-    //     }
-    // }, 5000);
 };
