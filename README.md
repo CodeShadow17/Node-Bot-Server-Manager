@@ -3,7 +3,8 @@
 This Bot Manager script provides a command-line interface (CLI) to manage multiple bot processes. It allows you to start, stop, restart, monitor, and perform various other operations on bots located in the BOTS directory.
 
 ## Note:
-This code only supports node.js codes that rely on the package.json file
+This code only supports node.js codes that rely on the package.json file.
+The code will automatically create all folders if you run it as a test without doing anything.
 
 ## Features:
 
