@@ -6,6 +6,9 @@ const path = require('path');
 
 const BOTS_DIR = path.join(__dirname, 'BOTS');
 const LOGS_DIR = path.join(__dirname, 'logs');
+const BACKUP_DIR = path.join(__dirname, 'backups');
+
+if (!fs.existsSync(BOTS_DIR)) fs.mkdirSync(BOTS_DIR);
 
 if (!fs.existsSync(LOGS_DIR)) fs.mkdirSync(LOGS_DIR);
 
@@ -240,8 +243,9 @@ const showBotInfo = (botName) => {
 };
 
 const backupBot = (botName) => {
+    let BotName = botName.replaceAll(' ', '-');
     const botPath = path.join(BOTS_DIR, botName);
-    const backupPath = path.join(BACKUP_DIR, `${botName}_backup_${Date.now()}`);
+    const backupPath = path.join(BACKUP_DIR, `${BotName}_backup_${Date.now()}`);
     
     // Ensure the backup directory exists
     if (!fs.existsSync(BACKUP_DIR)) {
@@ -252,7 +256,7 @@ const backupBot = (botName) => {
     const botFolder = path.join(botPath);
     fs.cpSync(botFolder, backupPath, { recursive: true });
 
-    console.log(`${botName} has been backed up to ${backupPath}.`);
+    console.log(`${BotName} has been backed up to ${backupPath}.`);
 };
 
 const monitorBot = (botName) => {
@@ -277,11 +281,4 @@ const monitorBot = (botName) => {
             restartBot(botName);
         }
     });
-
-    // Optionally, monitor the bot’s memory usage or other conditions here
-    // setInterval(() => {
-    //     if (someConditionToRestartBot) {
-    //         restartBot(botName);
-    //     }
-    // }, 5000);
 };
